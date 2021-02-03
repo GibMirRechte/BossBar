@@ -1,0 +1,7 @@
+name: BossBar
+version: 1.0
+api-version: 1.15
+author: GibMirRechte
+main: de.bossbar.main.Main
+website: https://discord.gg/yhBX6KT
+commands:
