@@ -19,10 +19,23 @@ public class JoinListener implements Listener {
 				BossBar bossBar = Bukkit.createBossBar("§cThis color is not available!", BarColor.WHITE, BarStyle.SOLID);
 				bossBar.addPlayer(e.getPlayer());
 			}else {
-				BossBar bossBar = Bukkit.createBossBar(Main.text.get(index), getColor(Main.color.get(index)), BarStyle.SOLID);
+				
+				if(getBarStyle(Main.style.get(index)) == null) {
+					BossBar bossBar = Bukkit.createBossBar("§cThis BarType is not available!", BarColor.WHITE, BarStyle.SOLID);
+					bossBar.addPlayer(e.getPlayer());
+					return;
+				}
+				
+				BossBar bossBar = Bukkit.createBossBar(Main.text.get(index), getColor(Main.color.get(index)), getBarStyle(Main.style.get(index)));
 				bossBar.addPlayer(e.getPlayer());
 			}
 		}
+		
+		if(e.getPlayer().hasPermission("bossbar.notification") && Main.update_available) {
+			e.getPlayer().sendMessage("§7[§cBossBar§7] An Update is available!");
+			e.getPlayer().sendMessage("§7[§cBossBar§7] §cDownload now: §bhttps://www.spigotmc.org/resources/1-15-x-1-16-x-bossbar-by-gibmirrechte.88606/");
+		}
+		
 	}
 	
 	public BarColor getColor(String color_as_string) {
@@ -40,6 +53,22 @@ public class JoinListener implements Listener {
 			return BarColor.WHITE;
 		}else if(color_as_string.equalsIgnoreCase("yellow")) {
 			return BarColor.YELLOW;
+		}else {
+			return null;
+		}
+	}
+	
+	public BarStyle getBarStyle(String barstyle_as_string) {
+		if(barstyle_as_string.equalsIgnoreCase("solid")) {
+			return BarStyle.SOLID;
+		}else if(barstyle_as_string.equalsIgnoreCase("segmented_6")) {
+			return BarStyle.SEGMENTED_6;
+		}else if(barstyle_as_string.equalsIgnoreCase("segmented_20")) {
+			return BarStyle.SEGMENTED_20;
+		}else if(barstyle_as_string.equalsIgnoreCase("segmented_12")) {
+			return BarStyle.SEGMENTED_12;
+		}else if(barstyle_as_string.equalsIgnoreCase("segmented_10")) {
+			return BarStyle.SEGMENTED_10;
 		}else {
 			return null;
 		}
