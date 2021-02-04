@@ -80,7 +80,7 @@ public class Main extends JavaPlugin {
     }
 
     private boolean checkUpdate() {
-        System.out.println("§7[§cBossBar§7] §aChecking for updates...");
+        System.out.println("§7[§cBossBar§7] §aChecking for updates from the spigotmc api...");
         try {
             String localVersion = Bukkit.getPluginManager().getPlugin("BossBar").getDescription().getVersion();
             HttpsURLConnection connection = (HttpsURLConnection) new URL(url).openConnection();
