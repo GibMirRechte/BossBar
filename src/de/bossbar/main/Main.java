@@ -57,8 +57,8 @@ public class Main extends JavaPlugin {
 		int i = 1;
 		while(yaml.getString("Bar" + i + ".Text") != null) {
 			System.out.println("Initalized bar " + i);
-			color.put(i, yaml.getString("Bar" + i + ".Color").replace("&", "§"));
-			text.put(i, yaml.getString("Bar" + i + ".Text").replace("&", "§"));
+			color.put(i, yaml.getString("Bar" + i + ".Color").replace("&", "Â§"));
+			text.put(i, yaml.getString("Bar" + i + ".Text").replace("&", "Â§"));
 			style.put(i, yaml.getString("Bar" + i + ".Type"));
 			i++;
 		}
@@ -71,8 +71,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
 	}
 	
-	   private String url = "https://api.spigotmc.org/legacy/update.php?resource=";
-	    private String id = "88606";
+	   private String url = "https://api.spigotmc.org/legacy/update.php?resource=88606";
 
 	    private boolean isAvailable;
 	
@@ -81,10 +80,10 @@ public class Main extends JavaPlugin {
     }
 
     private boolean checkUpdate() {
-        System.out.println("§7[§cBossBar§7] §aChecking for updates...");
+        System.out.println("Â§7[Â§cBossBarÂ§7] Â§aChecking for updates...");
         try {
             String localVersion = Bukkit.getPluginManager().getPlugin("BossBar").getDescription().getVersion();
-            HttpsURLConnection connection = (HttpsURLConnection) new URL(url + id).openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) new URL(url).openConnection();
             connection.setRequestMethod("GET");
             String raw = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
 
